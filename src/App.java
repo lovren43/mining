@@ -23,15 +23,21 @@ public class App {
         HashMap<String,Integer> countryCount=new HashMap<String,Integer>();//Creating HashMap    
         HashMap<String,Integer> roomTypeCount=new HashMap<String,Integer>();//Creating HashMap    
         HashMap<String,Integer> reservationTypeCount=new HashMap<String,Integer>();
-        createSets(country, roomType, reservationType, cleanedData);//Creating HashMap    
-        System.out.println(country);
-        System.out.println(roomType);
-        System.out.println(reservationType);
+        // countryCount.put("eg", 1);
+        // System.out.println(countryCount.get("eg"));
+        // countryCount.put("eg", 2);
+        // System.out.println(countryCount.get("eg"));
+        createSets(country, roomType, reservationType, cleanedData);
+        createCount(countryCount, roomTypeCount, reservationTypeCount, cleanedData);
+        System.out.println(reservationTypeCount.get("Contract"));
+         System.out.println(country);
+        // System.out.println(roomType);
+        //System.out.println(reservationType);
 
-        Iterator itr=reservationType.iterator();
-        while(itr.hasNext()){
-          System.out.println(itr.next());
-        }
+        // Iterator itr=reservationType.iterator();
+        // while(itr.hasNext()){
+        //   System.out.println(itr.next());
+        // }
         // for (int i=0; i<cleanedData.size(); i++){
         //   System.out.println(cleanedData.get(i).get(2));
         // }
@@ -39,7 +45,7 @@ public class App {
 
 
     public static void readFile(ArrayList<String> data) throws FileNotFoundException{
-        Scanner sc = new Scanner(new File("C:/Users/lovre/Downloads/Assignment1/Assignment1/Book1.csv"));
+        Scanner sc = new Scanner(new File("C:/Users/Lovren/Downloads/Assignment1/Assignment1/hotel_bookings.csv"));
     sc.useDelimiter("\n");
     ArrayList<String> t=new ArrayList<>();
     while (sc.hasNext()) {
@@ -71,7 +77,24 @@ public class App {
   }
   public static void createCount(HashMap<String,Integer> countryCount, HashMap<String,Integer> roomTypeCount, HashMap<String,Integer> reservationTypeCount, ArrayList<ArrayList>cleanedData){
     for (int i=0; i<cleanedData.size(); i++){
-      
+      if(countryCount.containsKey(cleanedData.get(i).get(0).toString())){
+        countryCount.put(cleanedData.get(i).get(0).toString(), countryCount.get(cleanedData.get(i).get(0).toString())+1);
+      }
+      else{
+        countryCount.put(cleanedData.get(i).get(0).toString(), 1);
+      }
+      if(roomTypeCount.containsKey(cleanedData.get(i).get(1).toString())){
+        roomTypeCount.put(cleanedData.get(i).get(1).toString(), roomTypeCount.get(cleanedData.get(i).get(1).toString())+1);
+      }
+      else{
+        roomTypeCount.put(cleanedData.get(i).get(1).toString(), 1);
+      }
+      if(reservationTypeCount.containsKey(cleanedData.get(i).get(2).toString())){
+        reservationTypeCount.put(cleanedData.get(i).get(2).toString(), reservationTypeCount.get(cleanedData.get(i).get(2).toString())+1);
+      }
+      else{
+        reservationTypeCount.put(cleanedData.get(i).get(2).toString(), 1);
+      }
     }
   }
 }
