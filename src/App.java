@@ -26,15 +26,18 @@ public class App {
     HashMap<String, Integer> reservationTypeCount = new HashMap<String, Integer>();
     createSets(country, roomType, reservationType, cleanedData);
     createCount(countryCount, roomTypeCount, reservationTypeCount, cleanedData);
-    System.out.println(roomTypeCount);
-    applyMinimumSupport(roomTypeCount, 0.3,numberOfTransactions);
-    System.out.println(roomTypeCount);
-    System.out.println(reservationTypeCount);
-    applyMinimumSupport(reservationTypeCount, 0.3,numberOfTransactions);
-    System.out.println(reservationTypeCount);
-    System.out.println(countryCount);
-    applyMinimumSupport(countryCount, 0.1,numberOfTransactions);
-    System.out.println(countryCount);
+    Set<Set>combinedSet= new HashSet<Set>();
+    combinedSet=combineSets(country, roomType);
+    System.out.println(combinedSet);
+    // System.out.println(roomTypeCount);
+    // applyMinimumSupport(roomTypeCount, 0.3,numberOfTransactions);
+    // System.out.println(roomTypeCount);
+    // System.out.println(reservationTypeCount);
+    // applyMinimumSupport(reservationTypeCount, 0.3,numberOfTransactions);
+    // System.out.println(reservationTypeCount);
+    // System.out.println(countryCount);
+    // applyMinimumSupport(countryCount, 0.1,numberOfTransactions);
+    // System.out.println(countryCount);
     // System.out.println(countryCount);
     // System.out.println(roomType);
     // System.out.println(reservationType);
@@ -49,7 +52,7 @@ public class App {
   }
 
   public static void readFile(ArrayList<String> data) throws FileNotFoundException {
-    Scanner sc = new Scanner(new File("C:/Users/lovre/Downloads/Assignment1/Assignment1/hotel_bookings.csv"));
+    Scanner sc = new Scanner(new File("C:/Users/Lovren/Downloads/Assignment1/Assignment1/hotel_bookings.csv"));
     sc.useDelimiter("\n");
     ArrayList<String> t = new ArrayList<>();
     while (sc.hasNext()) {
